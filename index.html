@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Do You Love Me?</title>
+</head>
+
+<body style="
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffe6ef, #ffd1df, #fff0f5);
+">
+
+  <div style="
+    width: min(90%, 440px);
+    padding: 28px 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.72);
+    border: 3px solid #f58aaa;
+    border-radius: 28px;
+    box-shadow: 0 12px 30px rgba(174, 54, 94, 0.2);
+    position: relative;
+  ">
+
+    <div style="
+      position: absolute;
+      top: 12px;
+      left: 22px;
+      color: #ed6e96;
+      font-size: 24px;
+    ">♥</div>
+
+    <div style="
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      color: #ed6e96;
+      font-size: 18px;
+    ">♡</div>
+
+    <h1 style="
+      margin: 5px 0 18px;
+      color: #a52d5c;
+      font-size: clamp(25px, 7vw, 38px);
+      letter-spacing: 1px;
+    ">
+      KRISHNA, BABY DO YOU LOVE ME?
+    </h1>
+
+    <img
+      src="img.png"
+      alt="Cute cartoon couple holding each other"
+      style="
+        width: min(100%, 330px);
+        height: 250px;
+        object-fit: contain;
+        border-radius: 20px;
+        display: block;
+        margin: 0 auto 20px;
+      "
+    />
+
+    <p style="
+      margin: 0 0 22px;
+      color: #8b3154;
+      font-size: 17px;
+      font-weight: bold;
+    ">
+      Choose carefully, my love...
+    </p>
+
+    <div style="
+      min-height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    ">
+
+      <button
+        onclick="showLoveMessage()"
+        style="
+          border: none;
+          padding: 13px 28px;
+          border-radius: 30px;
+          background: #c93669;
+          color: white;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          box-shadow: 0 5px 12px rgba(170, 34, 82, 0.3);
+        "
+      >
+        YES
+      </button>
+
+      <button
+        id="noButton"
+        onmouseover="moveNoButton()"
+        ontouchstart="moveNoButton()"
+        onclick="moveNoButton()"
+        style="
+          border: none;
+          padding: 13px 28px;
+          border-radius: 30px;
+          background: #a92155;
+          color: white;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          position: relative;
+          transition: all 0.25s ease;
+          box-shadow: 0 5px 12px rgba(170, 34, 82, 0.3);
+        "
+      >
+        NO
+      </button>
+
+    </div>
+
+    <p style="
+      margin: 25px 0 0;
+      color: #c14a76;
+      font-size: 14px;
+    ">
+      Hint: There is only one correct answer. 
+    </p>
+  </div>
+
+  <div
+    id="lovePopup"
+    style="
+      display: none;
+      position: fixed;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(91, 20, 49, 0.45);
+      z-index: 10;
+    "
+  >
+    <div style="
+      max-width: 420px;
+      padding: 30px 24px;
+      text-align: center;
+      background: #fff5f8;
+      border: 3px solid #e85d8b;
+      border-radius: 25px;
+      box-shadow: 0 12px 35px rgba(100, 20, 50, 0.3);
+    ">
+      <div style="
+        color: #d6336c;
+        font-size: 42px;
+        margin-bottom: 10px;
+      ">
+        ♥
+      </div>
+
+      <h2 style="
+        margin: 0 0 15px;
+        color: #a52d5c;
+        font-size: 22px;
+      ">
+        <b>CAUTION⚠<b>
+      </h2>
+
+      <p style="
+        margin: 0 0 22px;
+        color: #7d294b;
+        font-size: 17px;
+        line-height: 1.5;
+        font-weight: bold;
+      ">
+        HANDLE WITH CARE.<br />
+        LETS LOVE EACHOTHER UNTIL DISTANCE BECOMES A MEMORY.💌<br />
+		NO REFUNDS. NO RETURNS.<br /> LOVE ME FOREVER❤(LIKE PAST 4 YEARS!). 
+		
+      </p>
+
+      <button
+        onclick="closeLoveMessage()"
+        style="
+          border: none;
+          padding: 12px 24px;
+          border-radius: 25px;
+          background: #c93669;
+          color: white;
+          font-size: 15px;
+          font-weight: bold;
+          cursor: pointer;
+        "
+      >
+        I PROMISE ♥
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function moveNoButton() {
+      const noButton = document.getElementById("noButton");
+
+      noButton.style.position = "fixed";
+
+      const buttonWidth = noButton.offsetWidth;
+      const buttonHeight = noButton.offsetHeight;
+
+      const maxLeft = window.innerWidth - buttonWidth - 12;
+      const maxTop = window.innerHeight - buttonHeight - 12;
+
+      const randomLeft = Math.max(12, Math.random() * maxLeft);
+      const randomTop = Math.max(12, Math.random() * maxTop);
+
+      noButton.style.left = randomLeft + "px";
+      noButton.style.top = randomTop + "px";
+      noButton.style.transform =
+        "rotate(" + (Math.random() * 20 - 10) + "deg)";
+    }
+
+    function showLoveMessage() {
+      document.getElementById("lovePopup").style.display = "flex";
+    }
+
+    function closeLoveMessage() {
+      document.getElementById("lovePopup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
